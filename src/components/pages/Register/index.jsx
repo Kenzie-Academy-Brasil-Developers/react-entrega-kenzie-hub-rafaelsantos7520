@@ -2,21 +2,20 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "./../../Form/index";
 import { ParagrafoErro } from "./../../ParagrafoErro/index";
-import { api } from "../../../services/api";
 import logo from "../../../assets/img/Logo.png";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { useState, useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { RegisterSchema } from "./registerSchema";
 import { NavBar } from "../../NavBar";
-import { SubmitButton } from "./../../Button/index";
-import { LinkContainer } from "../../Link";
 import { Headline, Titulo1 } from "../../styles/Textos";
+import { UserContext } from "./../../../context/UserContext";
+import { Button } from "../../Button/index.jsx";
+import {Link } from "./../../Link/Index.jsx";
 
 export const Register = () => {
+  const { userRegister } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  
   const {
     register,
     handleSubmit,
@@ -26,26 +25,14 @@ export const Register = () => {
   });
 
   const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      // eslint-disable-next-line no-unused-vars
-      const response = await api.post("users", data);
-      toast.success("Cadastro realizado com Sucesso");
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    } catch (error) {
-      toast.error(error.response.data.message);
-    } finally {
-      setLoading(false);
-    }
+    userRegister(data, setLoading);
   };
 
   return (
     <div>
       <NavBar>
         <img src={logo} alt="logo kenzie hub" />
-        <LinkContainer rota="/">voltar</LinkContainer>
+        <Link variant="LinkSmall" rota="/">voltar</Link>
       </NavBar>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Titulo1>Crie sua conta</Titulo1>
@@ -121,9 +108,9 @@ export const Register = () => {
             Quarto módulo
           </option>
         </select>
-        <SubmitButton type="submit" disabled={loading}>
+        <Button variant={"submit"} type="submit" disabled={loading}>
           {loading ? "cadastrando..." : "Cadastre-se"}
-        </SubmitButton>
+        </Button>
       </Form>
     </div>
   );

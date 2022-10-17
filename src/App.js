@@ -1,21 +1,21 @@
 import { RoutesMain } from "./routes/index.jsx";
 import { ToastContainer } from "react-toastify";
-import { useState } from 'react';
 import Global from "./components/styles/Global.js";
+import { UserProvider } from "./context/UserContext";
+import {UserTechsProvider} from "./context/UserTechsContext"
 
 const App = () => {
-  const [user , setUser] = useState(null);
-  return(
+  return (
     <main>
-    <Global/>
-    <ToastContainer theme="colored" autoClose={2000} />
-    <RoutesMain 
-    user={user}
-    setUser={setUser}
-    />
-  </main>
-  )
-
-  };
+      <Global />
+      <ToastContainer theme="colored" autoClose={2000} />
+      <UserProvider>
+        {/* <UserTechsProvider> */}
+          <RoutesMain />
+        {/* </UserTechsProvider> */}
+      </UserProvider>
+    </main>
+  );
+};
 
 export default App;

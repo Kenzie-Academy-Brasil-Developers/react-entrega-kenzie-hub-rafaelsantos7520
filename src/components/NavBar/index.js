@@ -7,12 +7,17 @@ export const NavBar = styled.div`
   box-sizing: border-box;
   margin: 0 auto;
   max-width: 100%;
-  justify-content: space-between;
   border: 1px solid var(--Grey-3);
-
+  justify-content:space-between;
+  padding: 30px 120px ;
+  
   img {
     height: 22px;
     width: 105px;
-    margin: auto;
+
+  }
+  @media (max-width:720px) {
+    justify-content: space-between;
+    padding: 10px;
   }
 `;

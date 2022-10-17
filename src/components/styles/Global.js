@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { Button } from './../Button/index';
 
 export default createGlobalStyle`
 
@@ -40,26 +41,36 @@ body,html{
 
 header{
     display:flex;
-    justify-content: space-between;
-    height: 113px;
+    width: 100%;
     align-items: center;
-    margin:0 auto ;
+    height: 113px;;
     border: 1px solid var(--Grey-3);
+    padding:0px 120px;
+    justify-content: space-between;
 
     @media (max-width:720px){
         flex-direction:column;
         align-items:flex-start;
         justify-content: center;
-        height: 140px;
+        height: 130px;
         gap: 10px;
+        padding:5px;
+        
     }
-
-
 }
 main{
-    p{
-        font-size: 16px;
-    }
-    }
 
+    p{
+        font-size: 12px;
+    }
+    }
+    .divContainerButtonTitulo{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 130px;
+        @media (max-width:720px) {
+            padding: 10px;
+
+        }
+    }
 `;

@@ -3,20 +3,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "./../../Form/index";
 import { ParagrafoErro } from "../../ParagrafoErro";
 import logo from "../../../assets/img/Logo.png";
-import { api } from "../../../services/api.js";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 import { Loginschema } from "./loginSchema";
 import { NavBar } from "../../NavBar";
-import { SubmitButton } from "../../Button";
-import { LinkContainer } from "../../Link";
 import { Headline, Titulo1 } from "../../styles/Textos";
+import { UserContext } from "./../../../context/UserContext";
+import { useContext } from "react";
+import { Button } from './../../Button/index.jsx';
+import { Link } from './../../Link/Index.jsx';
 
-export const Login = ({ setUser }) => {
+export const Login = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+
+  const { userLogin } = useContext(UserContext);
 
   const {
     register,
@@ -27,18 +26,7 @@ export const Login = ({ setUser }) => {
   });
 
   const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      const response = await api.post("sessions", data);
-      window.localStorage.setItem("@TOKEN", response.data.token);
-      window.localStorage.setItem("@USERID", response.data.user.id);
-      setUser(response.data.user);
-      navigate("/Dashboard");
-    } catch (error) {
-      toast.error(error.response.data.message);
-    } finally {
-      setLoading(false);
-    }
+    userLogin(data, setLoading);
   };
 
   return (
@@ -64,13 +52,13 @@ export const Login = ({ setUser }) => {
           {...register("password")}
         />
         <ParagrafoErro>{errors.password?.message}</ParagrafoErro>
-        <SubmitButton type="submit" disabled={loading}>
+        <Button type="submit" variant={"submit"} disabled={loading}>
           {loading ? "Entrando..." : "Entrar"}
-        </SubmitButton>
+        </Button>
         <Headline>Ainda não possui conta?</Headline>
-        <LinkContainer classe="btnCadastrar" rota="/register">
+        <Link variant="linkBig" rota="/register">
           Cadastrar
-        </LinkContainer>
+        </Link>
       </Form>
     </>
   );

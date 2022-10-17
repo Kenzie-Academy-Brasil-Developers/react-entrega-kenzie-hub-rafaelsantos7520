@@ -1,39 +1,42 @@
 import { NavBar } from "../../NavBar";
 import logo from "../../../assets/img/Logo.png";
-import { LinkContainer } from "../../Link";
 import { Headline, Titulo1 } from "../../styles/Textos";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { UserContext } from "./../../../context/UserContext";
+import { useContext, useState } from "react";
+import { Button } from "../../Button/index.jsx";
+import { TechsList } from "../../TechsContainer/index.jsx";
+import { Modal } from './../../Modal/index';
 
-export const Dashboard = ({ user, setUser }) => {
-  const navigate = useNavigate();
-  const logout = () => {
-    setUser(null);
-    localStorage.clear();
-  };
-  
+export const Dashboard = () => {
+  const { logout, loading, user } = useContext(UserContext);
+  const [modalOpen,setOpenModal] = useState(false);
 
-  useEffect(()=>{
-    if(user === null){
-      navigate("/");
-    }
-  })
-  
+
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <>
       <NavBar>
-        <img onClick={logout} src={logo} alt="logo kenzie hub" />
-        <LinkContainer onClick={logout} rota="/">
+        <img src={logo} alt="logo kenzie hub" />
+        <Button variant={"buttonMedium"} onClick={logout}>
           voltar
-        </LinkContainer>
+        </Button>
       </NavBar>
       <header>
-        <Titulo1>ola,{user?.name}</Titulo1>
-        <Headline>{user?.course_module}</Headline>
+        <Titulo1>ola,{user.name}</Titulo1>
+        <Headline>{user.course_module}</Headline>
       </header>
-      <Titulo1>Que pena! Estamos em desenvolvimento :( </Titulo1>
-      <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+      <div className="divContainerButtonTitulo">
+        <Titulo1>Tecnologias</Titulo1>
+        <Button onClick={()=> setOpenModal(true)} variant={"buttonNewTech"}>+</Button>
+        {modalOpen? 
+        <Modal onClose={()=> setOpenModal(false)} /> : null 
+      }
+      </div>
+      <TechsList/>
     </>
   );
 };

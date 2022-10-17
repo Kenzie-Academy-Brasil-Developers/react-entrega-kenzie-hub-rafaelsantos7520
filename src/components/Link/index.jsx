@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import "./index.css"
+import { Container } from './index';
 
-export const LinkContainer = ({ classe, onClick, rota, children }) => (
-  <Link className={classe} to={rota} onClick={onClick}>
+export const Link = ({ variant, children,rota }) => (
+  <Container to={rota} variant={variant}>
     {children}
-  </Link>
+  </Container>
 );
+
