@@ -10,7 +10,7 @@ import { NavBar } from "../../NavBar";
 import { Headline, Titulo1 } from "../../styles/Textos";
 import { UserContext } from "./../../../context/UserContext";
 import { Button } from "../../Button/index.jsx";
-import {Link } from "./../../Link/Index.jsx";
+import {Link } from "./../../Link/index.jsx";
 
 export const Register = () => {
   const { userRegister } = useContext(UserContext);

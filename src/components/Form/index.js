@@ -41,6 +41,7 @@ export const Form = styled.form`
 
   input:focus {
     border: 1.22px solid var(--Grey-0);
+    color: var(--Withe);
 
     ::placeholder {
       color: var(--Grey-0);

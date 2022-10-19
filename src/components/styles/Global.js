@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { Button } from './../Button/index';
 
 export default createGlobalStyle`
 
@@ -28,6 +27,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
     text-decoration: none;
+    max-width: 100vw;
   }
 
 body,html{
@@ -35,18 +35,20 @@ body,html{
     height: 100vh;
     background: var(--Color-black);
     color:white;
+    box-sizing: border-box;
+    
 
     
 }
 
 header{
     display:flex;
-    width: 100%;
     align-items: center;
     height: 113px;;
     border: 1px solid var(--Grey-3);
     padding:0px 120px;
     justify-content: space-between;
+    
 
     @media (max-width:720px){
         flex-direction:column;
@@ -60,6 +62,7 @@ header{
 }
 main{
 
+
     p{
         font-size: 12px;
     }
@@ -68,6 +71,7 @@ main{
         display: flex;
         justify-content: space-between;
         padding: 20px 130px;
+
         @media (max-width:720px) {
             padding: 10px;
 

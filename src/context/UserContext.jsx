@@ -8,11 +8,10 @@ export const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userTechs,setUserTechs] = useState([]);
+  const [userTechs, setUserTechs] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
-  
   const userLogin = async (data, setLoading) => {
     try {
       setLoading(true);
@@ -23,8 +22,6 @@ export const UserProvider = ({ children }) => {
       navigate(toLocation);
     } catch (error) {
       toast.error(error.response.data.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -34,6 +31,12 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (user !== null) {
+      navigate("/Dashboard");
+    }
+  }, [navigate, user]);
+
+  useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
     async function getProfile() {
       if (token) {
@@ -41,21 +44,16 @@ export const UserProvider = ({ children }) => {
         try {
           const { data } = await api.get("profile");
           setUser(data);
-          setUserTechs(data.techs)
-
-          
+          setUserTechs(data.techs);
         } catch (error) {
           console.log(error);
           localStorage.clear();
         }
       }
       setLoading(false);
-      
     }
     getProfile();
   }, []);
- 
-  
 
   const userRegister = async (data, setLoading) => {
     try {
@@ -72,7 +70,15 @@ export const UserProvider = ({ children }) => {
   };
   return (
     <UserContext.Provider
-      value={{ user, userLogin, userRegister, logout, loading, userTechs}}
+      value={{
+        user,
+        userLogin,
+        userRegister,
+        logout,
+        loading,
+        userTechs,
+        setUserTechs,
+      }}
     >
       {children}
     </UserContext.Provider>

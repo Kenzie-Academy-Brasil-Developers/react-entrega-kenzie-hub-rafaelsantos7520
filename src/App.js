@@ -10,9 +10,9 @@ const App = () => {
       <Global />
       <ToastContainer theme="colored" autoClose={2000} />
       <UserProvider>
-        {/* <UserTechsProvider> */}
+        <UserTechsProvider>
           <RoutesMain />
-        {/* </UserTechsProvider> */}
+        </UserTechsProvider>
       </UserProvider>
     </main>
   );

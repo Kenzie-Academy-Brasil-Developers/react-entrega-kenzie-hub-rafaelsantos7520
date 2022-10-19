@@ -20,14 +20,14 @@ const ButtonTypeVariations = {
     }
   `,
   buttonModal: css`
-  background-color:transparent;
-  border: none;
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--Withe);
+    background-color: transparent;
+    border: none;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--Withe);
+    cursor: pointer;
   `,
 
-  
   buttonNewTech: css`
     display: flex;
     align-items: center;
@@ -53,16 +53,23 @@ const ButtonTypeVariations = {
     top: 20px;
     border-radius: 4px;
     padding: 0px 10px 0px 10px;
-    background-color:var(--Grey-3);
+    background-color: var(--Grey-3);
     color: var(--Withe);
     transition: all 0.3s;
-    border: none  ;
+    border: none;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       background-color: var(--Grey-2);
     }
-      `,
+  `,
+
+  buttonExcluirTech: css`
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  `,
 };
 
 export const Container = styled.button`
@@ -70,5 +77,4 @@ export const Container = styled.button`
   .primary {
     background-color: transparent;
   }
-
 `;

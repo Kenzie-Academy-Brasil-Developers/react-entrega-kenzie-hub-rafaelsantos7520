@@ -10,7 +10,7 @@ import { Headline, Titulo1 } from "../../styles/Textos";
 import { UserContext } from "./../../../context/UserContext";
 import { useContext } from "react";
 import { Button } from './../../Button/index.jsx';
-import { Link } from './../../Link/Index.jsx';
+import { Link } from './../../Link/index.jsx';
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -32,8 +32,9 @@ export const Login = () => {
   return (
     <>
       <NavBar>
-        <img src={logo} alt="logo kenzie hub" />
+        <img className="imgCentralizada" src={logo} alt="logo kenzie hub" />
       </NavBar>
+      
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Titulo1>Login</Titulo1>
         <label htmlFor="email">E-mail</label>
