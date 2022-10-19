@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Form } from "./../../Form/index";
-import { ParagrafoErro } from "../../ParagrafoErro";
-import logo from "../../../assets/img/Logo.png";
+import { Form } from "../../components/Form/index";
+import { ParagrafoErro } from "../../components/ParagrafoErro/index";
+import logo from "../../assets/img/Logo.png";
 import { useState } from "react";
 import { Loginschema } from "./loginSchema";
-import { NavBar } from "../../NavBar";
-import { Headline, Titulo1 } from "../../styles/Textos";
-import { UserContext } from "./../../../context/UserContext";
+import { NavBar } from "../../components/NavBar/";
+import { Headline, Titulo1 } from "../../components/styles/Textos";
+import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
-import { Button } from './../../Button/index.jsx';
-import { Link } from './../../Link/index.jsx';
+import { Button } from '../../components/Button/index.jsx';
+import { Link } from './../../components/Link/index.jsx';
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);

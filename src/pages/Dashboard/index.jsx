@@ -1,11 +1,11 @@
-import { NavBar } from "../../NavBar";
-import logo from "../../../assets/img/Logo.png";
-import { Headline, Titulo1 } from "../../styles/Textos";
-import { UserContext } from "./../../../context/UserContext";
+import { NavBar } from "../../components/NavBar";
+import logo from "../../assets/img/Logo.png";
+import { Headline, Titulo1 } from "../../components/styles/Textos";
+import { UserContext } from "../../context/UserContext";
 import { useContext, useState } from "react";
-import { Button } from "../../Button/index.jsx";
-import { TechsList } from "../../TechsContainer/index.jsx";
-import { Modal } from "./../../Modals/ModalNewTechAdd/index";
+import { Button } from "../../components/Button/index.jsx";
+import { TechsList } from "../../components/TechsContainer/index";
+import { Modal } from "../../components/Modals/ModalNewTechAdd/index";
 
 export const Dashboard = () => {
   const { logout, loading, user } = useContext(UserContext);
@@ -17,6 +17,7 @@ export const Dashboard = () => {
 
   return (
     <>
+    
       <NavBar>
         <img src={logo} alt="logo kenzie hub" />
         <Button variant={"buttonMedium"} onClick={logout}>

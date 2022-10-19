@@ -1,21 +1,21 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Form } from "./../../Form/index";
-import { ParagrafoErro } from "./../../ParagrafoErro/index";
-import logo from "../../../assets/img/Logo.png";
+import logo from "../../assets/img/Logo.png";
 import { useState, useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { RegisterSchema } from "./registerSchema";
-import { NavBar } from "../../NavBar";
-import { Headline, Titulo1 } from "../../styles/Textos";
-import { UserContext } from "./../../../context/UserContext";
-import { Button } from "../../Button/index.jsx";
-import {Link } from "./../../Link/index.jsx";
+import { Headline, Titulo1 } from "../../components/styles/Textos";
+import { UserContext } from "../../context/UserContext";
+import { Button } from "../../components/Button/index.jsx";
+import { Link } from "./../../components/Link/index.jsx";
+import { Form } from "./../../components/Form/index";
+import { ParagrafoErro } from "./../../components/ParagrafoErro/index";
+import { NavBar } from "./../../components/NavBar/index";
 
 export const Register = () => {
   const { userRegister } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
-  
+
   const {
     register,
     handleSubmit,
@@ -32,7 +32,9 @@ export const Register = () => {
     <div>
       <NavBar>
         <img src={logo} alt="logo kenzie hub" />
-        <Link variant="LinkSmall" rota="/">voltar</Link>
+        <Link variant="LinkSmall" rota="/">
+          voltar
+        </Link>
       </NavBar>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Titulo1>Crie sua conta</Titulo1>
