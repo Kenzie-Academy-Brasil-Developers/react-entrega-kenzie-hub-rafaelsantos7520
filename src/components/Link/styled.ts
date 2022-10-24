@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
+ export type LinkVariantType = keyof typeof LinkTypeVariations;
+
+interface ILinlContainerProps {
+  variant: LinkVariantType;
+}
 const LinkTypeVariations = {
+  Defalt: css`
+    text-decoration: none;
+  `,
   linkBig: css`
     display: flex;
     align-items: center;
@@ -41,8 +49,6 @@ const LinkTypeVariations = {
     }
   `,
 };
-export const Container = styled(Link)`
-  ${({ variant }) => LinkTypeVariations[variant || "primary"]}
-  .primary {
-  }
+export const Container = styled(Link)<ILinlContainerProps>`
+  ${({ variant }) => LinkTypeVariations[variant || "defalt"]}
 `;

@@ -1,8 +1,8 @@
-import { RoutesMain } from "./routes/index.jsx";
+import { RoutesMain } from "./routes/index";
 import { ToastContainer } from "react-toastify";
-import Global from "./components/styles/Global.js";
 import { UserProvider } from "./context/UserContext";
 import {UserTechsProvider} from "./context/UserTechsContext"
+import Global from "./components/styles/Global";
 
 const App = () => {
   return (

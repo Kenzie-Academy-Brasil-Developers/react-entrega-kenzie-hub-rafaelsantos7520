@@ -1,6 +1,16 @@
 import styled, { css } from "styled-components";
 
+export type ButtonVariantType =  keyof typeof  ButtonTypeVariations;
+
+interface IButtonContainerProps {
+  variant: ButtonVariantType;
+}
+
 const ButtonTypeVariations = {
+  defaults: css`
+  background-color:transparent;
+  `,
+
   submit: css`
     height: 48px;
     border-radius: 4px;
@@ -72,9 +82,9 @@ const ButtonTypeVariations = {
   `,
 };
 
-export const Container = styled.button`
-  ${({ variant }) => ButtonTypeVariations[variant || "primary"]}
-  .primary {
-    background-color: transparent;
-  }
+
+export const Container = styled.button<IButtonContainerProps>`
+
+   ${({ variant  } ) =>  ButtonTypeVariations[variant || "defaults"]}
+   
 `;

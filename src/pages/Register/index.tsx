@@ -1,16 +1,28 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../../assets/img/Logo.png";
+// import logo from "../../assets/img/Logo.png";
 import { useState, useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { RegisterSchema } from "./registerSchema";
 import { Headline, Titulo1 } from "../../components/styles/Textos";
 import { UserContext } from "../../context/UserContext";
-import { Button } from "../../components/Button/index.jsx";
-import { Link } from "./../../components/Link/index.jsx";
-import { Form } from "./../../components/Form/index";
-import { ParagrafoErro } from "./../../components/ParagrafoErro/index";
-import { NavBar } from "./../../components/NavBar/index";
+import { Button } from "../../components/Button/index";
+import { Link } from "../../components/Link/index";
+import { Form } from "../../components/Form/index";
+import { ParagrafoErro } from "../../components/ParagrafoErro/index";
+import { NavBar } from "../../components/NavBar/index";
+import { logo } from './../Dashboard/index';
+
+
+export interface iRegisterFormData{
+  name: string;
+  email:string;
+  bio: string;
+  contact:string;
+  course_module: string;
+  password: string;
+  confirmPassword?: string;
+}
 
 export const Register = () => {
   const { userRegister } = useContext(UserContext);
@@ -20,11 +32,11 @@ export const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iRegisterFormData>({
     resolver: yupResolver(RegisterSchema),
   });
 
-  const onSubmit = async (data) => {
+  const submit: SubmitHandler<iRegisterFormData> = async (data) => {
     userRegister(data, setLoading);
   };
 
@@ -36,7 +48,7 @@ export const Register = () => {
           voltar
         </Link>
       </NavBar>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(submit)}>
         <Titulo1>Crie sua conta</Titulo1>
         <Headline>Rapido e grátis, vamos nessa</Headline>
 
@@ -96,7 +108,7 @@ export const Register = () => {
 
         <label htmlFor="moduloSelect">Selecionar módulo</label>
         <ParagrafoErro>{errors.course_module?.message}</ParagrafoErro>
-        <select id="moduloSelect" type="text" {...register("course_module")}>
+        <select id="moduloSelect" {...register("course_module")}>
           <option value="Primeiro módulo (Introdução ao Frontend)">
             Primeiro módulo
           </option>

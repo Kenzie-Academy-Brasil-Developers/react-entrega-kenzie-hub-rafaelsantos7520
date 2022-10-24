@@ -9,12 +9,13 @@ export const Form = styled.form`
   padding: 42px 22px;
   margin: 20px auto ;
   gap: 10px;
+  overflow-y:scroll;
 
 
   width: 370px;
   max-width: 95%;
   box-sizing: border-box;
-  max-height: 800px;
+  max-height: 700px;
   border-radius: 6px;
   overflow-y: auto;
   background-color: var(--Grey-3);
@@ -57,5 +58,9 @@ export const Form = styled.form`
     background-color: var(--Grey-2);
     border: 1.22px solid var(--Grey-2);
     color: var(--Grey-1);
+  }
+  @media (max-width: 720px) {
+    max-height: 650px;
+    
   }
 `;

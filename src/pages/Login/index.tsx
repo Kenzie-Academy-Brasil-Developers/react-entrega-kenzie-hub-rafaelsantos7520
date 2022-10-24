@@ -1,16 +1,28 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "../../components/Form/index";
-import { ParagrafoErro } from "../../components/ParagrafoErro/index";
-import logo from "../../assets/img/Logo.png";
+import { ParagrafoErro  } from "../../components/ParagrafoErro/index";
+// import Logo from "../../assets/img/Logo.png";
 import { useState } from "react";
 import { Loginschema } from "./loginSchema";
-import { NavBar } from "../../components/NavBar/";
+import { NavBar } from "../../components/NavBar";
 import { Headline, Titulo1 } from "../../components/styles/Textos";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
-import { Button } from '../../components/Button/index.jsx';
-import { Link } from './../../components/Link/index.jsx';
+import { Button } from "../../components/Button/index";
+import { Link } from "../../components/Link/index";
+import { logo } from './../Dashboard/index';
+
+
+
+export interface iLoginFormData{
+  email: string;
+  password: string;
+  name: string;
+  bio:string;
+  contact:string;
+  course_module:string;
+}
 
 export const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -21,11 +33,11 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iLoginFormData>({
     resolver: yupResolver(Loginschema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data:iLoginFormData) => {
     userLogin(data, setLoading);
   };
 
@@ -34,7 +46,7 @@ export const Login = () => {
       <NavBar>
         <img className="imgCentralizada" src={logo} alt="logo kenzie hub" />
       </NavBar>
-      
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Titulo1>Login</Titulo1>
         <label htmlFor="email">E-mail</label>
@@ -44,7 +56,7 @@ export const Login = () => {
           type="email"
           {...register("email")}
         />
-        <ParagrafoErro>{errors.email?.message}</ParagrafoErro>
+        <ParagrafoErro>{errors.email?.message}</ParagrafoErro >
         <label htmlFor="password">Password</label>
         <input
           placeholder="senha"
